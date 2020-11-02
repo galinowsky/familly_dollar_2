@@ -41,7 +41,7 @@ export default new Vuex.Store({
       "% in Stock": 0.886183840519851,
       "POG UTIL%": 1,
       "Lost Basic Sales": 703871.347061111,
-    }],
+    }]
   },
   mutations: {
     updateStore: (state, payload) => {

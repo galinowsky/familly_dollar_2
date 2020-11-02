@@ -8,6 +8,7 @@ import store from './store'
 Vue.config.productionTip = false
 
 Vue.component('Navbar',require('../src/components/Navigation/Navbar').default);
+
 new Vue({
   vuetify,
   router,

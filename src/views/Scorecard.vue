@@ -1,7 +1,7 @@
 <template>
-  <v-main class="pt-0">
+  <div class="pt-0"  height="100%">
     <v-layout column justify-center>
-      <ScoreCardNavigation :dataHeaders="dataHeaders"></ScoreCardNavigation >
+      <ScoreCardNavigation :dataHeaders="dataHeaders" @data-to-render="handleData" ></ScoreCardNavigation >
 
 
       <v-flex>
@@ -9,12 +9,12 @@
           There will be the scorecard dashboard prepared with all components
         </p>
       </v-flex>
-    <ChartWrapper >
+    <ChartWrapper  >
 
     </ChartWrapper>
 
     </v-layout>
-  </v-main>
+  </div>
 </template>
 
 <script>
@@ -30,6 +30,7 @@ export default {
   data() {
     return {
       drawer:false,
+      chartsToRender:[],
       dataHeaders: [],
       arrSales: [],
       newData: [],
@@ -53,6 +54,12 @@ export default {
       });
 
   this.dataHeaders =  Object.keys(getData[0])
+  },
+  methods: {
+    handleData: function(data)  {
+
+    return   this.chartsToRender = data
+    }
   }
   ,
   computed: mapState({
