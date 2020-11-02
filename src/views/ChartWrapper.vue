@@ -1,17 +1,25 @@
 <template>
-     <v-card class="ma-15 overflow-y-auto" height="500px" width="700px">
-        <v-card-title>Sales Chart</v-card-title>
+     <v-main>
+       <v-card
+       class="ma-15 overflow-y-auto"
+       height="500px"
+       width="700px"
+       v-for="item in chartsToRender"
+      :key="item"
+       >
+        <v-card-title >{{item}} Chart</v-card-title>
         <BarChart
           v-if="arrSales.length > 0"
-          :chartData="arrSales"
+          :chartHeaders="item"
           :options="chartOptions"
-          label="Sales"
+          :label="item"
         ></BarChart>
       </v-card>
+     </v-main>
 </template>
 
 <script>
-import { mapState } from "vuex";
+
 import BarChart from "../components/BarChart";
 
 export default {
@@ -19,37 +27,34 @@ export default {
   components: {
     BarChart,
   },
-
+  props: {
+    chartsToRender: {
+      type:Array
+    }
+  },
   data() {
     return {
       arrNames: [],
-      arrSales: [],
-      newData: [],
+      arrSales: ['lala'],
+      chartsData: [
+        // { sales, risk },
+        // {ebita, ecita}
+      ],
       chartOptions: {
         responsive: true,
         maintainAspectRatio: true,
       },
     };
   },
-  created() {
-
-  },
   mounted(){
     const { getData } = this.$store.getters
+  // console.log(getData)
 
-  getData.forEach((item) => {
-        this.arrSales.push({
-          "Vendor Name": item["Vendor Name"],
-          sales: item["Sales$ (000's)"],
-        });
-      });
-
+  //  this.chartsData = this.chartsToRender.map(elem => ({ name: elem}) )
+  //    console.log(this.chartsToRender)
+  //   console.log(this.chartsData)
   this.arrNames =  Object.keys(getData[0])
   }
-  ,
-  computed: mapState({
-
-  }),
 };
 
 </script>

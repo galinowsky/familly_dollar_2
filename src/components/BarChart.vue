@@ -1,38 +1,39 @@
 <script>
-import { HorizontalBar  } from "vue-chartjs";
+import { HorizontalBar } from "vue-chartjs";
 
 export default {
-name: "BarChart",
+  name: "BarChart",
   extends: HorizontalBar,
   props: {
     label: {
       type: String,
     },
-    chartData: {
-      type: Array,
+    chartHeaders: {
+      type: String,
     },
     options: {
       type: Object,
     },
   },
   mounted() {
-    let JSONed = JSON.parse(JSON.stringify(this.chartData)).filter(item=>  item["Vendor Name"] != "Total " && item["Vendor Name"] != "Top 50")
-  // console.log(JSONed)
-    const names = JSONed.map(item => item["Vendor Name"]);
-    const sales = JSONed.map(item => item.sales);
+    // let JSONed = JSON.parse(JSON.stringify(this.chartData))
+    const { getData } = this.$store.getters
+    console.log(getData)
+
+    const names = getData.map((item) => item["Vendor Name"]);
+    const chartData = getData.map((item) => item[this.chartHeaders]);
+    console.log({names, chartData})
     // console.log({names,sales})
     this.renderChart(
       {
-        type: 'horizontalBar',
+        type: "HorizontalBar",
         labels: names,
         datasets: [
           {
             label: this.label,
-            data: sales,
-            backgroundColor: 'rgba(255, 206, 86, 1)',
-
-          }
-
+            data: chartData,
+            backgroundColor: "rgba(255, 206, 86, 1)",
+          },
         ],
       },
       this.options

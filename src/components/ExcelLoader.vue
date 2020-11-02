@@ -1,13 +1,14 @@
 <template>
   <v-main>
     <v-card>
-      <v-form @submit="addToStore">
+      <v-form @submit="addToStore" >
         <v-file-input
+          max-width="200px"
           show-size
           truncate-length="50"
           placeholder="please load excel file"
         />
-        <v-btn class="green white--text" type="submit"> Get Data</v-btn>
+        <v-btn class="green white--text ml-7  mb-5" type="submit"> Get Data</v-btn>
       </v-form>
     </v-card>
   </v-main>
