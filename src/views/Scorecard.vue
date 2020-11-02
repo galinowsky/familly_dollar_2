@@ -1,37 +1,36 @@
 <template>
-  <v-main>
+  <v-main class="pt-0">
     <v-layout column justify-center>
+      <ScoreCardNavigation :dataHeaders="dataHeaders"></ScoreCardNavigation >
+
+
       <v-flex>
         <p class="headline" justify-center>
           There will be the scorecard dashboard prepared with all components
         </p>
       </v-flex>
+    <ChartWrapper >
 
-      <v-card class="ma-15 overflow-y-auto" height="500px" width="700px">
-        <v-card-title>Sales Chart</v-card-title>
-        <BarChart
-          v-if="arrSales.length > 0"
-          :chartData="arrSales"
-          :options="chartOptions"
-          label="Sales"
-        ></BarChart>
-      </v-card>
+    </ChartWrapper>
+
     </v-layout>
   </v-main>
 </template>
 
 <script>
 import { mapState } from "vuex";
-import BarChart from "../components/BarChart";
-
+import ChartWrapper from './ChartWrapper'
+import ScoreCardNavigation from '../components/Navigation/ScoreCardNavigation'
 export default {
   name: "Scorecard",
   components: {
-    BarChart,
+    ChartWrapper,
+    ScoreCardNavigation
   },
   data() {
     return {
-      arrNames: [],
+      drawer:false,
+      dataHeaders: [],
       arrSales: [],
       newData: [],
       chartOptions: {
@@ -41,17 +40,6 @@ export default {
     };
   },
   created() {
-//  const data = this.$store.state
-
-  // console.log(data)
-
-//       data.forEach((item) => {
-//         this.arrSales.push({
-//           "Vendor Name": item["Vendor Name"],
-//           sales: item["Sales$ (000's)"],
-//         });
-//       });
-
 
   },
   mounted(){
@@ -64,7 +52,7 @@ export default {
         });
       });
 
-  this.arrNames =  Object.keys(getData[0])
+  this.dataHeaders =  Object.keys(getData[0])
   }
   ,
   computed: mapState({

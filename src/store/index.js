@@ -20,7 +20,7 @@ export default new Vuex.Store({
       "Inv Growth": -0.104366722287704,
       "Aged Inv 180+ (000s)": 200080.584332001,
       "Inv Days": 78.6963462966853,
-      "Turn Growth": 0.27253615225729,
+      "Turn Growth`": 0.27253615225729,
       "Shrink $ @Retail (000's)": -164401.7410414,
       "Damage $ @cost (000's)": 17099.38337,
       "DMG Rate": 0.00435690722888878,

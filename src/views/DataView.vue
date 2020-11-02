@@ -1,5 +1,5 @@
 <template>
-  <v-main>
+  <v-main class="ma-10">
     <v-layout column justify-center>
       <v-flex>
         <p class="headline center">
