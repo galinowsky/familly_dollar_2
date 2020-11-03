@@ -1,9 +1,9 @@
 <template>
-  <v-main class="ma-10" height="100%">
+  <v-main class="mx-15 pa-15"  >
     <v-layout column justify-center>
-      <v-flex>
+      <v-flex align-self-center >
         <p class="headline center">
-          There will be the data imported from Excel file
+          Please import Excel file in .xlsx format using form below
         </p>
       </v-flex>
       <v-flex justify-center>

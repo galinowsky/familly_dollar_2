@@ -6,8 +6,8 @@
 
       <TaskTitle></TaskTitle>
       <v-spacer></v-spacer>
-      <v-btn text class="pa-2" to="/">Scorecard</v-btn>
-      <v-btn text class="pa-2" to="/data">DataView</v-btn>
+      <v-btn text class="pa-2" to="/"><span>Score</span> <span class="font-weight-light">card</span></v-btn>
+      <v-btn text class="pa-2" to="/data"><span>Data </span> <span class="font-weight-light"> Import</span></v-btn>
       <v-spacer></v-spacer>
 
       <v-img

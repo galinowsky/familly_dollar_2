@@ -1,20 +1,38 @@
 <template>
   <div class="pt-0" height="100%">
-    <v-layout column justify-center>
-      <ScoreCardNavigation
-        :dataHeaders="dataHeaders"
-        @data-to-render="handleData"
-      ></ScoreCardNavigation>
-
-      <v-flex>
-        <p class="headline" justify-center>
-          There will be the scorecard dashboard prepared with all components
-        </p>
+    <ScoreCardNavigation
+      :dataHeaders="dataHeaders"
+      @charts-to-render="handleChartsData"
+      @treemaps-to-render="handleTreemapsData"
+      @full-data-to-render="handleFullData"
+    ></ScoreCardNavigation>
+    <v-layout column justify-center class="ma-5">
+      <v-flex align-self-center class="mt-10 mx-15 px-15">
+        <v-card
+          class="pa-15"
+          v-if="chartsToRender.length === 0 && treemapsToRender.length === 0 && !fullDataRender "
+        >
+          <h4 class="headline px-15" justify-center>
+            <v-list-item
+              >1. Load data from file in "Data Import" section</v-list-item
+            >
+            <v-list-item
+              >2. Then choose charts to present from "Chart Options" menu in
+              upper left corner</v-list-item
+            >
+            <v-list-item
+              >3. Changing view will occur reset of "Chart Options" settings
+            </v-list-item>
+          </h4>
+        </v-card>
       </v-flex>
 
-          <ChartWrapper :chartsToRender="chartsToRender"> </ChartWrapper>
-
-
+      <ChartWrapper
+        :chartsToRender="chartsToRender"
+        :treemapsToRender="treemapsToRender"
+        :fullDataRender="fullDataRender"
+      >
+      </ChartWrapper>
     </v-layout>
   </div>
 </template>
@@ -31,21 +49,28 @@ export default {
   data() {
     return {
       drawer: false,
+      allChartsToRender: {},
       chartsToRender: [],
+      treemapsToRender: [],
+      fullDataRender: false,
       dataHeaders: [],
     };
   },
   mounted() {
     const { getData } = this.$store.getters;
-    this.dataHeaders = Object.keys(getData[0]).filter(elem=> elem!= "Vendor Name");
-
-
-
-
+    this.dataHeaders = Object.keys(getData[0]).filter(
+      (elem) => elem != "Vendor Name"
+    );
   },
   methods: {
-    handleData: function (data) {
-      return (this.chartsToRender = data);
+    handleChartsData: function (data) {
+      this.chartsToRender = data;
+    },
+    handleTreemapsData: function (data) {
+      this.treemapsToRender = data;
+    },
+    handleFullData: function (data) {
+      this.fullDataRender = data;
     },
   },
 };

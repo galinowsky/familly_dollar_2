@@ -1,24 +1,31 @@
 <template>
-  <v-card class="mt-10">
-    <p class="headline">There will be excel table with data</p>
-    <v-card>
-      <v-card-title>
+  <v-card class="ma-15 pa-15" v-if="data.length > 1">
+    <v-layout column justify-center>
+      <v-flex align-self-center>
+
+      </v-flex>
+
+        <v-card-title>
+           <p class="headline">Imported Data Full view</p>
+        </v-card-title>
         <v-text-field
-          v-model="search"
-          append-icon="mdi-magnify"
-          label="Search"
-          single-line
-          hide-details
-        ></v-text-field>
-      </v-card-title>
-      <v-data-table
-        :headers="header"
-        :items="data"
-        :items-per-page="10"
-        class="elevation-1"
-        :search="search"
-      ></v-data-table>
-    </v-card>
+            v-model="search"
+            append-icon="mdi-magnify"
+            label="Search"
+            single-line
+            hide-details
+          ></v-text-field>
+
+
+        <v-data-table
+          :headers="header"
+          :items="data"
+          :items-per-page="10"
+          class="elevation-1 "
+          :search="search"
+        ></v-data-table>
+
+    </v-layout>
   </v-card>
 </template>
 
@@ -28,9 +35,9 @@ import { mapState } from "vuex";
 export default {
   name: "DataTable",
   data() {
-      return {
-          search: '',
-      }
+    return {
+      search: "",
+    };
   },
   computed: mapState({
     data: ({ data }) => {
