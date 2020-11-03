@@ -11,7 +11,10 @@
           There will be the scorecard dashboard prepared with all components
         </p>
       </v-flex>
-      <ChartWrapper :chartsToRender="chartsToRender"> </ChartWrapper>
+
+          <ChartWrapper :chartsToRender="chartsToRender"> </ChartWrapper>
+
+
     </v-layout>
   </div>
 </template>
@@ -38,7 +41,7 @@ export default {
 
 
 
-    
+
   },
   methods: {
     handleData: function (data) {

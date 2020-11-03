@@ -12,7 +12,14 @@
       <v-list nav dense>
         <v-list-item-title>Choose Data to render</v-list-item-title>
         <v-spacer></v-spacer>
-        <v-list-item-group active-class="deep-purple--text text--accent-4">
+        <v-list-group
+        sub-group
+        active-class="deep-purple--text text--accent-4">
+          <template v-slot:activator>
+            <v-list-item-content>
+              <v-list-item-title>Render Single chart</v-list-item-title>
+            </v-list-item-content>
+          </template>
           <v-list-item v-for="item in dataHeaders" :key="item" >
             <v-checkbox
               :value="item"
@@ -21,7 +28,7 @@
             ></v-checkbox>
             {{ item }}
           </v-list-item>
-        </v-list-item-group>
+        </v-list-group>
       </v-list>
     </v-navigation-drawer>
   </div>
