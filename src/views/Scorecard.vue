@@ -21,7 +21,7 @@
               upper left corner</v-list-item
             >
             <v-list-item
-              >3. Changing view will occur reset of "Chart Options" settings
+              >3. Changing view in app bar will  reset  "Chart Options" settings
             </v-list-item>
           </h4>
         </v-card>

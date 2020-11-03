@@ -1,17 +1,17 @@
 <template>
   <v-container>
-    <v-row wrap>
+    <v-row wrap justify="center">
       <v-col
         cols="12"
         xs="10"
-        sm="8"
+        sm="6"
         md="6"
-        lg="4"
+        lg="6"
         xl="4"
         v-for="item in chartsToRender"
         :key="item"
       >
-        <v-card class="overflow-y-auto" >
+        <v-card class="overflow-y-auto">
           <v-card-title>{{ item }} Chart</v-card-title>
           <BarChart
             v-if="chartsToRender.length > 0"
@@ -22,18 +22,16 @@
         </v-card>
       </v-col>
     </v-row>
-    <v-row wrap>
+    <v-row wrap justify="center">
       <v-col
         cols="12"
         xs="12"
         sm="9"
         md="6"
         lg="6"
-        xl="6"
-
+        xl="4"
         v-for="item in treemapsToRender"
         :key="item"
-        justify-center
       >
         <v-card>
           <v-card-title>{{ item }} Treemap </v-card-title>
@@ -46,15 +44,15 @@
         </v-card>
       </v-col>
     </v-row>
-    <v-row >
+    <v-row>
       <v-col
-      cols="12"
+        cols="12"
         xs="12"
-      class="d-flex justify-center"
+        class="d-flex justify-center"
         v-if="fullDataRender"
         justify-center
-        >
-          <DataTable></DataTable>
+      >
+        <DataTable></DataTable>
       </v-col>
     </v-row>
   </v-container>
@@ -63,14 +61,14 @@
 <script>
 import BarChart from "../components/Charts/BarChart";
 import Treemap from "../components/Charts/Treemap";
-import DataTable from "../components/DataTable"
+import DataTable from "../components/DataTable";
 
 export default {
   name: "ChartWrapper",
   components: {
     BarChart,
     Treemap,
-    DataTable
+    DataTable,
   },
   props: {
     chartsToRender: {
@@ -79,17 +77,15 @@ export default {
     treemapsToRender: {
       type: Array,
     },
-    fullDataRender : {
-      type: Boolean
-    }
+    fullDataRender: {
+      type: Boolean,
+    },
   },
   data() {
     return {
       arrNames: [],
       arrSales: ["lala"],
       chartsData: [
-        // { sales, risk },
-        // {ebita, ecita}
       ],
       chartOptions: {
         responsive: true,
@@ -99,11 +95,6 @@ export default {
   },
   mounted() {
     const { getData } = this.$store.getters;
-    // console.log(getData)
-
-    //  this.chartsData = this.chartsToRender.map(elem => ({ name: elem}) )
-    //    console.log(this.chartsToRender)
-    //   console.log(this.chartsData)
     this.arrNames = Object.keys(getData[0]);
   },
 };

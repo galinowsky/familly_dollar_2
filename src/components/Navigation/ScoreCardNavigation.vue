@@ -2,9 +2,7 @@
   <div>
     <v-app-bar>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-
       <v-toolbar-title>Chart Options</v-toolbar-title>
-
       <v-spacer></v-spacer>
     </v-app-bar>
 
@@ -23,17 +21,16 @@
 
           <v-list-item-title>Choose chart types</v-list-item-title>
         </v-list-item>
-         <v-list-group sub-group active-class="deep-purple--text text--accent-4">
+        <v-list-group sub-group active-class="deep-purple--text text--accent-4">
           <template v-slot:activator>
             <v-list-item-content>
               <v-list-item-title>Data Tables</v-list-item-title>
             </v-list-item-content>
           </template>
-          <v-list-item  >
+          <v-list-item>
             <v-checkbox
-
-            v-model="isFullDataChecked"
-             @change="onFullDataChange"
+              v-model="isFullDataChecked"
+              @change="onFullDataChange"
             ></v-checkbox>
             Show Data Table
           </v-list-item>
@@ -97,8 +94,8 @@ export default {
     onTreemapChange: function (data) {
       this.$emit("treemaps-to-render", data);
     },
-    onFullDataChange: function(data) {
-      console.log(data)
+    onFullDataChange: function (data) {
+      console.log(data);
       this.$emit("full-data-to-render", data);
     },
   },
