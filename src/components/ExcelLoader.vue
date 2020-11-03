@@ -34,7 +34,7 @@ export default {
       let excelFile = e.target[1].files[0];
       this.$store.dispatch("addFileToStore", excelFile);
     },
-    clearStore(e) {
+    clearStore() {
       this.$store.dispatch("deleteStore", null);
     },
   },
