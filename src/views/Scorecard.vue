@@ -7,12 +7,12 @@
       @full-data-to-render="handleFullData"
     ></ScoreCardNavigation>
     <v-layout column justify-center class="ma-5">
-      <v-flex align-self-center class="mt-10 mx-15 px-15">
+      <v-flex align-self-center class="mt-10 mx-5 px-5">
         <v-card
-          class="pa-15"
+
           v-if="chartsToRender.length === 0 && treemapsToRender.length === 0 && !fullDataRender "
         >
-          <h4 class="headline px-15" justify-center>
+          <h4 class="headline pa-7" justify-center>
             <v-list-item
               >1. Load data from file in "Data Import" section</v-list-item
             >
@@ -64,6 +64,7 @@ export default {
   },
   methods: {
     handleChartsData: function (data) {
+      console.log('dupa')
       this.chartsToRender = data;
     },
     handleTreemapsData: function (data) {

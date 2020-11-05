@@ -6,7 +6,7 @@
       <v-spacer></v-spacer>
     </v-app-bar>
 
-    <!-- <v-navigation-drawer
+    <!-- 
       v-model="drawer"
       absolute
       left
@@ -70,7 +70,7 @@
         </v-list-group>
       </v-list>
 
-    </v-navigation-drawer> -->
+    </> -->
     <v-navigation-drawer
       v-model="drawer"
       absolute
@@ -78,7 +78,7 @@
       temporary
       v-if="dataHeaders.length > 0"
     >
-      <v-list nav dense>
+      <v-list nav dense class="pr-7">
         <v-list-item>
           <v-list-item-icon>
             <v-icon>mdi-home</v-icon>
@@ -87,8 +87,12 @@
           <v-list-item-title>Manage Application</v-list-item-title>
         </v-list-item>
 
-          <DrawerGroup :title="testTitle" :listItems="testGroupData"></DrawerGroup>
+        <DrawerGroup
+          :title="testTitle"
+          :listItems="testGroupData"
+          :dataHeaders="dataHeaders"
 
+        ></DrawerGroup>
       </v-list>
     </v-navigation-drawer>
   </div>
@@ -113,33 +117,19 @@ export default {
       checkedChartHeaders: [],
       checkedTreeHeaders: [],
       isFullDataChecked: false,
-      testTitle: "test section",
-      testGroupData: [{
-        itemTitle: "Donut",
-        itemIcon: "mdi-chart-arc"
-      },
-      {
-        itemTitle: "Line Chart",
-        itemIcon: "mdi-chart-bell-curve-cumulative"
-      },
-      {
-        itemTitle: "TreeMap",
-        itemIcon: "mdi-chart-tree"
-      }
-      ]
+      testTitle: "Charts types",
+      testGroupData: [
+        {
+          itemTitle: "Bar Chart",
+          itemIcon: "mdi-chart-bar",
+        },
+        {
+          itemTitle: "Tree Map",
+          itemIcon: "mdi-chart-tree",
+        },
+      ],
     };
   },
-  methods: {
-    onChartsChange: function (data) {
-      this.$emit("charts-to-render", data);
-    },
-    onTreemapChange: function (data) {
-      this.$emit("treemaps-to-render", data);
-    },
-    onFullDataChange: function (data) {
-      console.log(data);
-      this.$emit("full-data-to-render", data);
-    },
-  },
+  
 };
 </script>

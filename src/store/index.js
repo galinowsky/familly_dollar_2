@@ -44,16 +44,19 @@ export default new Vuex.Store({
         "Lost Basic Sales": 703871.347061111,
       },
     ],
+    views: [
+
+    ]
   },
   mutations: {
-    updateStore: (state, payload) => {
+    updateData: (state, payload) => {
       //    console.log({state,payload})
       // console.log(...payload)
       state.data = [...payload];
     },
     deleteStore: (state) => {
-      state.data = []
-    }
+      state.data = [];
+    },
   },
   actions: {
     addFileToStore: ({ commit }, payload) => {
@@ -78,10 +81,10 @@ export default new Vuex.Store({
           });
         });
 
-        commit("updateStore", rowObject);
+        commit("updateData", rowObject);
       };
     },
-    deleteStore: ({commit}) => commit("deleteStore"),
+    deleteStore: ({ commit }) => commit("deleteStore"),
   },
   getters: {
     getData: (state) => state.data,

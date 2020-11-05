@@ -1,49 +1,33 @@
 <template>
-  <!-- <v-list>
-    <v-list-item>
-      <v-list-item-icon>
-        <v-icon>mdi-home</v-icon>
-      </v-list-item-icon>
-
-      <v-list-item-title>home</v-list-item-title>
-    </v-list-item>
-    <v-list-group :value="true" prepend-icon="mdi-account-circle">
-      <template v-slot:activator>
-        <v-list-item-title>Users</v-list-item-title>
-      </template>
-      <v-list-group :value="true" no-action sub-group></v-list-group>
-      <template v-slot:activator>
-        <v-list-item-content>
-          <v-list-item-title>Admin</v-list-item-title>
-        </v-list-item-content>
-      </template>
-    </v-list-group>
-  </v-list> -->
-  <v-list-group :value="true" prepend-icon="mdi-chart-bar"
-  no-action
-          sub-group
-  >
+  <v-list-group :value="false" prepend-icon="mdi-chart-bar" no-action>
     <template v-slot:activator>
-      <v-list-item-title>Charts</v-list-item-title>
+      <v-list-item-title>{{ title }}</v-list-item-title>
     </template>
+    <!-- ______________________ -->
+    <ListElement
+      v-for="({ itemTitle, itemIcon }, i) in listItems"
+      :key="i"
+      link
+    :title="itemTitle"
+    :icon="itemIcon"
+    :dataHeaders="dataHeaders"
+    >
 
-    <v-list-item v-for="({ itemTitle, itemIcon }, i) in listItems" :key="i" link>
-       <v-list-item-icon>
-        <v-icon v-text="itemIcon"></v-icon>
-      </v-list-item-icon>
-      <v-list-item-title v-text="itemTitle"></v-list-item-title>
-
-
-    </v-list-item>
+    </ListElement>
   </v-list-group>
 </template>
 
 <script>
+import ListElement from './ListElement'
+
 export default {
   name: "DrawerGroup",
+  components: {
+    ListElement
+  },
   props: {
-    subGroup: {
-      type: Boolean,
+    dataHeaders: {
+      type: Array,
     },
     title: {
       type: String,
@@ -54,8 +38,8 @@ export default {
     listItems: {
       type: Array,
     },
-    dataHeaders :{
-      type: Array,
+    methods: {
+      type: Object
     }
   },
 };
