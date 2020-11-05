@@ -2,11 +2,11 @@
   <div>
     <v-app-bar>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-      <v-toolbar-title>Chart Options</v-toolbar-title>
+      <v-toolbar-title>Manage Application</v-toolbar-title>
       <v-spacer></v-spacer>
     </v-app-bar>
 
-    <v-navigation-drawer
+    <!-- <v-navigation-drawer
       v-model="drawer"
       absolute
       left
@@ -37,9 +37,12 @@
         </v-list-group>
         <v-list-group sub-group active-class="deep-purple--text text--accent-4">
           <template v-slot:activator>
-            <v-list-item-content>
+            <v-list-item>
+              <v-list-item-icon>
+                <v-icon>mdi-chart-bar</v-icon>
+              </v-list-item-icon>
               <v-list-item-title>Render Single chart</v-list-item-title>
-            </v-list-item-content>
+            </v-list-item>
           </template>
           <v-list-item v-for="item in dataHeaders" :key="item">
             <v-checkbox
@@ -66,14 +69,39 @@
           </v-list-item>
         </v-list-group>
       </v-list>
+
+    </v-navigation-drawer> -->
+    <v-navigation-drawer
+      v-model="drawer"
+      absolute
+      left
+      temporary
+      v-if="dataHeaders.length > 0"
+    >
+      <v-list nav dense>
+        <v-list-item>
+          <v-list-item-icon>
+            <v-icon>mdi-home</v-icon>
+          </v-list-item-icon>
+
+          <v-list-item-title>Manage Application</v-list-item-title>
+        </v-list-item>
+
+          <DrawerGroup :title="testTitle" :listItems="testGroupData"></DrawerGroup>
+
+      </v-list>
     </v-navigation-drawer>
   </div>
 </template>
 
 
 <script>
+import DrawerGroup from "./Lists/DrawerGroup";
 export default {
   name: "ScoreCardNavigation",
+  components: {
+    DrawerGroup,
+  },
   props: {
     dataHeaders: {
       type: Array,
@@ -85,6 +113,20 @@ export default {
       checkedChartHeaders: [],
       checkedTreeHeaders: [],
       isFullDataChecked: false,
+      testTitle: "test section",
+      testGroupData: [{
+        itemTitle: "Donut",
+        itemIcon: "mdi-chart-arc"
+      },
+      {
+        itemTitle: "Line Chart",
+        itemIcon: "mdi-chart-bell-curve-cumulative"
+      },
+      {
+        itemTitle: "TreeMap",
+        itemIcon: "mdi-chart-tree"
+      }
+      ]
     };
   },
   methods: {
