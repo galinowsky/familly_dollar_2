@@ -1,18 +1,18 @@
 <template>
   <v-main>
-    <v-card class="mx-15 pa-15">
-      <v-form @submit="addToStore">
+    <v-card class="pa-5 ">
+      <v-form @submit="addToStore" >
         <v-file-input
-          class="mr-15 pr-15"
+
           width="200px"
           show-size
           truncate-length="50"
           placeholder="please load excel file"
         />
-        <v-btn class="green white--text ml-7 mb-5" type="submit">
+        <v-btn class="green white--text ml-8" type="submit">
           Get Data</v-btn
         >
-        <v-btn @click="clearStore" class="red white--text ml-7 mb-5"
+        <v-btn @click="clearStore" class="red white--text ml-8"
           >Clear Data</v-btn
         >
       </v-form>

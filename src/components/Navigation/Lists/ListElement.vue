@@ -37,11 +37,15 @@ export default {
   data(){
       return {
           checkedChartHeaders: [],
+          chartTitle: []
       }
+  },
+  mounted() {
+
   },
   methods: {
     onChartsChange: function (data) {
-      this.$emit("charts-to-render", ...data);
+       this.$store.dispatch('updateViews', {data, dataTitle: this._props.title })
     },
     onTreemapChange: function (data) {
       this.$emit("treemaps-to-render", data);

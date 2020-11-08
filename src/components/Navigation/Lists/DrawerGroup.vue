@@ -11,6 +11,7 @@
     :title="itemTitle"
     :icon="itemIcon"
     :dataHeaders="dataHeaders"
+     v-on="$listeners"
     >
 
     </ListElement>
@@ -25,6 +26,7 @@ export default {
   components: {
     ListElement
   },
+
   props: {
     dataHeaders: {
       type: Array,

@@ -44,9 +44,12 @@ export default new Vuex.Store({
         "Lost Basic Sales": 703871.347061111,
       },
     ],
-    views: [
+    views: {
+      "Bar Chart" : ["Sales$ (000's)"]
+    },   // should be array of objects, every object represent chart type
+                  // and has its title property and data
 
-    ]
+
   },
   mutations: {
     updateData: (state, payload) => {
@@ -56,7 +59,14 @@ export default new Vuex.Store({
     },
     deleteStore: (state) => {
       state.data = [];
+      state.views = {}
     },
+    updateViews: (state, payload) => {
+
+      state.views = {...state.views, ...payload}
+
+
+    }
   },
   actions: {
     addFileToStore: ({ commit }, payload) => {
@@ -84,7 +94,14 @@ export default new Vuex.Store({
         commit("updateData", rowObject);
       };
     },
+    // updateView: ({commit}, payload) => {
+
+    // },
     deleteStore: ({ commit }) => commit("deleteStore"),
+    updateViews: ({commit}, payload) => {
+      let payloadObject = { [payload.dataTitle] : payload.data}
+      commit('updateViews', payloadObject)
+    }
   },
   getters: {
     getData: (state) => state.data,

@@ -64,8 +64,8 @@ export default {
   },
   methods: {
     handleChartsData: function (data) {
-      console.log('dupa')
-      this.chartsToRender = data;
+      console.log(data)
+      // this.chartsToRender = data;
     },
     handleTreemapsData: function (data) {
       this.treemapsToRender = data;
