@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-row wrap justify="center"
-     v-for="(item, i) in views"
+     v-for="(chartType,data, i) in views"
         :key="i"
 
     >
@@ -16,13 +16,19 @@
         :key="j"
       >
         <v-card class="overflow-y-auto">
-          <v-card-title>{{ data }} Chart</v-card-title>
-          <BarChart
+          <v-card-title>{{ item }} Chart</v-card-title>
+          <BarChart v-if="chartType===`Bar Chart`"
 
             :chartHeaders="data"
             :options="chartOptions"
             :label="data"
           ></BarChart>
+           <Treemap
+             v-else-if="chartType=== `Treemap`"
+            :chartHeaders="data"
+            :options="chartOptions"
+            :label="data"
+          ></Treemap>
         </v-card>
       </v-col>
     </v-row>
@@ -82,7 +88,7 @@ export default {
       type: Boolean,
     },
     views: {
-      type: Object,
+      type: Array,
     }
   },
   data() {

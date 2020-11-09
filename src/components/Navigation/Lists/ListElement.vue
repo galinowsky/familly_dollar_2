@@ -44,8 +44,9 @@ export default {
 
   },
   methods: {
-    onChartsChange: function (data) {
-       this.$store.dispatch('updateViews', {data, dataTitle: this._props.title })
+    onChartsChange: function () {
+
+       this.$store.dispatch('updateViews', {'data' : this.checkedChartHeaders, 'chart type' : this._props.title })
        this.$emit('charts-to-render')
     },
     onFullDataChange: function (data) {

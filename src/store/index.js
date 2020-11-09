@@ -44,9 +44,9 @@ export default new Vuex.Store({
         "Lost Basic Sales": 703871.347061111,
       },
     ],
-    views: {
+    views: []
 
-    },   // should be array of objects, every object represent chart type
+    ,   // should be array of objects, every object represent chart type
                   // and has its title property and data
 
 
@@ -59,11 +59,13 @@ export default new Vuex.Store({
     },
     deleteStore: (state) => {
       state.data = [];
-      state.views = {}
+      state.views = []
     },
     updateViews: (state, payload) => {
-
-      state.views = {...state.views, ...payload}
+      console.log(state.views ,payload)
+      let newState = state.views.filter(a => a['chart type'] != payload['chart type'] )
+      console.log(newState)
+      state.views = [...newState, payload]
 
 
     }
@@ -99,8 +101,9 @@ export default new Vuex.Store({
     // },
     deleteStore: ({ commit }) => commit("deleteStore"),
     updateViews: ({commit}, payload) => {
-      let payloadObject = { [payload.dataTitle] : payload.data}
-      commit('updateViews', payloadObject)
+      // console.log(payload)
+      // let payloadObject = { 'chartType': payload.dataTitle , 'data' : payload.data}
+      commit('updateViews', payload)
     }
   },
   getters: {

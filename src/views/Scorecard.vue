@@ -50,7 +50,7 @@ export default {
       treemapsToRender: [],
       fullDataRender: false,
       dataHeaders: [],
-      views: {},
+      views: [],
     };
   },
   mounted() {
