@@ -46,9 +46,7 @@ export default {
   methods: {
     onChartsChange: function (data) {
        this.$store.dispatch('updateViews', {data, dataTitle: this._props.title })
-    },
-    onTreemapChange: function (data) {
-      this.$emit("treemaps-to-render", data);
+       this.$emit('charts-to-render')
     },
     onFullDataChange: function (data) {
       console.log(data);

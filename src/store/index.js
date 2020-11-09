@@ -45,7 +45,7 @@ export default new Vuex.Store({
       },
     ],
     views: {
-      "Bar Chart" : ["Sales$ (000's)"]
+
     },   // should be array of objects, every object represent chart type
                   // and has its title property and data
 
@@ -105,5 +105,7 @@ export default new Vuex.Store({
   },
   getters: {
     getData: (state) => state.data,
+    getViews: (state) => state.views
   },
+
 });

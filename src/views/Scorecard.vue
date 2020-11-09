@@ -3,14 +3,15 @@
     <ScoreCardNavigation
       :dataHeaders="dataHeaders"
       @charts-to-render="handleChartsData"
-      @treemaps-to-render="handleTreemapsData"
-      @full-data-to-render="handleFullData"
     ></ScoreCardNavigation>
     <v-layout column justify-center class="ma-5">
       <v-flex align-self-center class="mt-10 mx-5 px-5">
         <v-card
-
-          v-if="chartsToRender.length === 0 && treemapsToRender.length === 0 && !fullDataRender "
+          v-if="
+            chartsToRender.length === 0 &&
+            treemapsToRender.length === 0 &&
+            !fullDataRender
+          "
         >
           <h4 class="headline pa-7" justify-center>
             <v-list-item
@@ -21,18 +22,13 @@
               upper left corner</v-list-item
             >
             <v-list-item
-              >3. Changing view in app bar will  reset  "Chart Options" settings
+              >3. Changing view in app bar will reset "Chart Options" settings
             </v-list-item>
           </h4>
         </v-card>
       </v-flex>
 
-      <ChartWrapper
-        :chartsToRender="chartsToRender"
-        :treemapsToRender="treemapsToRender"
-        :fullDataRender="fullDataRender"
-      >
-      </ChartWrapper>
+      <ChartWrapper :views="views"> </ChartWrapper>
     </v-layout>
   </div>
 </template>
@@ -54,6 +50,7 @@ export default {
       treemapsToRender: [],
       fullDataRender: false,
       dataHeaders: [],
+      views: {},
     };
   },
   mounted() {
@@ -63,8 +60,9 @@ export default {
     );
   },
   methods: {
-    handleChartsData: function (data) {
-      console.log(data)
+    handleChartsData: function () {
+      const { getViews } = this.$store.getters;
+      this.views = getViews;
       // this.chartsToRender = data;
     },
     handleTreemapsData: function (data) {

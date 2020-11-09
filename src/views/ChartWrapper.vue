@@ -1,6 +1,10 @@
 <template>
   <v-container>
-    <v-row wrap justify="center">
+    <v-row wrap justify="center"
+     v-for="(item, i) in views"
+        :key="i"
+
+    >
       <v-col
         cols="12"
         xs="10"
@@ -8,21 +12,21 @@
         md="6"
         lg="6"
         xl="4"
-        v-for="item in chartsToRender"
-        :key="item"
+        v-for="(data, j) in item"
+        :key="j"
       >
         <v-card class="overflow-y-auto">
-          <v-card-title>{{ item }} Chart</v-card-title>
+          <v-card-title>{{ data }} Chart</v-card-title>
           <BarChart
-            v-if="chartsToRender.length > 0"
-            :chartHeaders="item"
+
+            :chartHeaders="data"
             :options="chartOptions"
-            :label="item"
+            :label="data"
           ></BarChart>
         </v-card>
       </v-col>
     </v-row>
-    <v-row wrap justify="center">
+    <!-- <v-row wrap justify="center">
       <v-col
         cols="12"
         xs="12"
@@ -30,20 +34,20 @@
         md="6"
         lg="6"
         xl="4"
-        v-for="item in treemapsToRender"
+        v-for="item in charts"
         :key="item"
       >
         <v-card>
           <v-card-title>{{ item }} Treemap </v-card-title>
           <Treemap
-            v-if="treemapsToRender.length > 0"
+            v-if="charts.length > 0"
             :chartHeaders="item"
             :options="chartOptions"
             :label="item"
           ></Treemap>
         </v-card>
       </v-col>
-    </v-row>
+    </v-row> -->
     <v-row>
       <v-col
         cols="12"
@@ -60,33 +64,33 @@
 
 <script>
 import BarChart from "../components/Charts/BarChart";
-import Treemap from "../components/Charts/Treemap";
+// import Treemap from "../components/Charts/Treemap";
 import DataTable from "../components/DataTable";
 
 export default {
   name: "ChartWrapper",
   components: {
     BarChart,
-    Treemap,
+    // Treemap,
     DataTable,
   },
   props: {
-    chartsToRender: {
-      type: Array,
-    },
-    treemapsToRender: {
+    treemaps: {
       type: Array,
     },
     fullDataRender: {
       type: Boolean,
     },
+    views: {
+      type: Object,
+    }
   },
   data() {
     return {
       arrNames: [],
-      arrSales: ["lala"],
       chartsData: [
       ],
+      charts: [],
       chartOptions: {
         responsive: true,
         maintainAspectRatio: true,
@@ -94,8 +98,9 @@ export default {
     };
   },
   mounted() {
-    const { getData } = this.$store.getters;
+    const { getData, getViews } = this.$store.getters;
     this.arrNames = Object.keys(getData[0]);
+    this.charts = getViews
   },
 };
 </script>
