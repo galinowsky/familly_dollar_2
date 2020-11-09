@@ -1,5 +1,5 @@
 <template>
-  <v-card class="ma-15 pa-15" v-if="data.length > 1">
+  <v-card class="mt-10 pa-5" v-if="data.length > 1">
     <v-layout column justify-center>
       <v-flex align-self-center> </v-flex>
 

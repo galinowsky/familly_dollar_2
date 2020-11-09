@@ -62,9 +62,7 @@ export default new Vuex.Store({
       state.views = []
     },
     updateViews: (state, payload) => {
-      console.log(state.views ,payload)
       let newState = state.views.filter(a => a['chart type'] != payload['chart type'] )
-      console.log(newState)
       state.views = [...newState, payload]
 
 

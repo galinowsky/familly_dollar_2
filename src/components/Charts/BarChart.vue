@@ -17,11 +17,8 @@ export default {
   },
   mounted() {
     const { getData } = this.$store.getters;
-    console.log(getData);
-
     const names = getData.map((item) => item["Vendor Name"]);
     const chartData = getData.map((item) => item[this.chartHeaders]);
-    console.log({ names, chartData });
 
     this.renderChart(
       {

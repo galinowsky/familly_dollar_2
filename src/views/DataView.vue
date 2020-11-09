@@ -1,5 +1,5 @@
 <template>
-  <v-main class="mx-15 pa-15"  >
+  <v-main class="mx-10 pa-5"  >
     <v-layout column justify-center>
       <v-flex align-self-center >
         <p class="headline center">

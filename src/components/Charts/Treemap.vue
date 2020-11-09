@@ -20,13 +20,11 @@ export default {
   },
   mounted() {
     const { getData } = this.$store.getters;
-
     const chartData = getData.map((item) => ({
       value: item[this.chartHeaders],
       title: item["Vendor Name"],
     }));
 
-    console.log(chartData);
     this.renderChart(
       {
         type: "treemap",
